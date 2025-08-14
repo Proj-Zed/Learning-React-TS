@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { FieldValues, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -32,6 +32,7 @@ const Form = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isValid },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
   //   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -42,8 +43,9 @@ const Form = () => {
   //     console.log(person);
   //   };
 
-  const onSubmit = (data: FieldValues) => {
+  const onSubmit = (data: FormData) => {
     console.log(data);
+    reset();
   };
   return (
     <form
